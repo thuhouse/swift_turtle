@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
 
     int score = 0;
     public int Score { get {return score;}}
+
+    int storedScore = 0;
+    public int StoredScore {get {return storedScore;}}
     private bool _gameOver = true;
 
     public bool GameOver {get { return _gameOver;}}
@@ -51,8 +54,22 @@ public class GameManager : MonoBehaviour
 
     private void OnPlayerScored()
     {
-        score++;
+        if (storedScore >= 10) return;
+        storedScore++;        
+    }
+
+    private void OnPoo(){
+        score += CalculateScore(storedScore);
         scoreText.text = score.ToString();
+        storedScore = 0;
+    }
+
+    private int CalculateScore(int storedScore){
+        int total = 0;
+        for (int i = 1; i <= storedScore; i++){
+            total += i;
+        }
+        return total;
     }
 
     private void OnPlayerDied()
