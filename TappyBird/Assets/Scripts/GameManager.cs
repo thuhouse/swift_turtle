@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public delegate void GameDelegate();
     public static event GameDelegate OnGameStarted;
     public static event GameDelegate OnGameOverConfirmed;
+    public static event GameDelegate OnEatMedium;
+    public static event GameDelegate OnEatHeavy;
     public static GameManager Instance;
     public GameObject startPage;
     public GameObject gameOverPage;
@@ -40,6 +42,8 @@ public class GameManager : MonoBehaviour
         CountdownText.OnCountdownFinished += OnCountdownFinished;
         TapController.OnPlayerDied += OnPlayerDied;
         TapController.OnPlayerScored += OnPlayerScored;
+        TapController.OnReset += OnReset;
+        PooController.OnPoo += OnPoo;
     }
 
     private void OnDisable() {
@@ -56,6 +60,8 @@ public class GameManager : MonoBehaviour
     {
         if (storedScore >= 10) return;
         storedScore++;        
+        if (storedScore == 3) OnEatMedium();
+        if (storedScore == 8) OnEatHeavy();
     }
 
     private void OnPoo(){
@@ -130,5 +136,10 @@ public class GameManager : MonoBehaviour
     public void StartGame(){
         //activated when play button
         SetPageState(PageState.Countdown);
+    }
+
+    private void OnReset(){
+        storedScore = 0;
+        score = 0;
     }
 }

@@ -9,6 +9,7 @@ public class TapController : MonoBehaviour
     public delegate void PlayerDelegate();
     public static event PlayerDelegate OnPlayerDied;
     public static event PlayerDelegate OnPlayerScored;
+    public static event PlayerDelegate OnReset;
     public float tapForce = 10;
     public float tiltSmooth = 5;
     public Vector3 startPos;
@@ -20,10 +21,15 @@ public class TapController : MonoBehaviour
     Quaternion _downRotation;
     Quaternion _forwardRotation;
 
+    SpriteRenderer _spriteRenderer;
+    [SerializeField]
+    Sprite[] birds;
+
     private void Start() {
         _rigidbody = GetComponent<Rigidbody2D>();
         _downRotation = Quaternion.Euler(0, 0, -90);
         _forwardRotation = Quaternion.Euler(0, 0, 20);
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         ResetPosition();
         //rigidbody.simulated = false;
     }
@@ -31,6 +37,9 @@ public class TapController : MonoBehaviour
     private void OnEnable() {
         GameManager.OnGameStarted += OnGameStarted;
         GameManager.OnGameOverConfirmed += OnGameOverConfirmed;
+        GameManager.OnEatMedium += OnEatMedium;
+        GameManager.OnEatHeavy += OnEatHeavy;
+        PooController.OnPoo += OnPoo;
     }
 
     private void OnDisable() {
@@ -40,8 +49,7 @@ public class TapController : MonoBehaviour
 
     private void OnGameOverConfirmed()
     {
-        transform.localPosition = startPos;
-        transform.rotation = Quaternion.identity;
+        ResetPosition();
     }
 
     private void OnGameStarted()
@@ -67,6 +75,7 @@ public class TapController : MonoBehaviour
         if (other.gameObject.tag == "ScoreZone"){
             //register score
             OnPlayerScored();
+            EatFood();
             scoreAudio.Play();
         }
 
@@ -83,6 +92,35 @@ public class TapController : MonoBehaviour
         transform.localPosition = startPos;
         transform.rotation = Quaternion.identity;
         _rigidbody.simulated = false;
+        Reset();
+    }
+
+    private void Reset(){
+        _spriteRenderer.sprite = birds[0];
+        _rigidbody.mass = 1;
+        transform.localScale = new Vector3(0.08f, 0.08f, 1);
+        OnReset();
+    }
+
+    private void EatFood(){
+        Vector3 newScale = new Vector3(transform.localScale.x + 0.005f, transform.localScale.y + 0.005f, transform.localScale.z);
+        transform.localScale = newScale;
+    }
+
+    private void OnEatMedium(){
+        _rigidbody.mass = 1f;
+        _spriteRenderer.sprite = birds[1];
+    }
+
+    private void OnEatHeavy(){
+        _rigidbody.mass = 3.5f;
+        _spriteRenderer.sprite = birds[2];
+    }
+
+    private void OnPoo(){
+        _spriteRenderer.sprite = birds[0];
+        _rigidbody.mass = 1;
+        transform.localScale = new Vector3(0.08f, 0.08f, 1);
     }
 
 }
