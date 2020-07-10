@@ -747,7 +747,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.44875002, y: 0.086572535}
   m_AnchorMax: {x: 0.55375004, y: 0.15057252}
-  m_AnchoredPosition: {x: -192, y: 1126.1}
+  m_AnchoredPosition: {x: -192, y: 1126.125}
   m_SizeDelta: {x: 133.86513, y: 112.74304}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &202083206
@@ -1286,6 +1286,7 @@ GameObject:
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
+  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1319,6 +1320,7 @@ MonoBehaviour:
   scoreText: {fileID: 357883402}
   backgroundAudio: {fileID: 965667828}
   goldenAudio: {fileID: 1250913075}
+  foodRandomizer: {fileID: 0}
   currentAudio: {fileID: 965667828}
 --- !u!20 &519420031
 Camera:
@@ -1408,6 +1410,37 @@ MonoBehaviour:
   poo: {fileID: 2444103284164935599, guid: 741139ca8dc1b1a489f81b52def5e657, type: 3}
   goldPoo: {fileID: 3393671849546888801, guid: 3267ab9f41cf3254bb2411b9a5799cb4, type: 3}
   bird: {fileID: 1113518757}
+--- !u!114 &519420035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5b107a063edfb04a8223cffd8789cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sprites:
+  - {fileID: 21300000, guid: 08b45db4954d3c54288f0e38a632e304, type: 3}
+  - {fileID: 21300000, guid: 9fa7cbe6d4ca1f947b809ff94e2594aa, type: 3}
+  - {fileID: 21300000, guid: e4c912e795a5da9409e92d2b66d7e95e, type: 3}
+  - {fileID: 21300000, guid: 68a47f8f468a24f4499713d853691390, type: 3}
+  - {fileID: 21300000, guid: f25558f2cab809d43a418f8e201d98d1, type: 3}
+  - {fileID: 21300000, guid: 8705b5eabe1cefa4681c6656508b89d8, type: 3}
+  - {fileID: 21300000, guid: 7f0de40d6a7960d43a8ff57f59d6c0f9, type: 3}
+  - {fileID: 21300000, guid: 9fbdd16de55ee0b438cdcec322e6e61f, type: 3}
+  - {fileID: 21300000, guid: a2fadacd7e7d91e45b5dd00efdba1991, type: 3}
+  - {fileID: 21300000, guid: 08c304e1f61a28e44a77bfef2813eb87, type: 3}
+  - {fileID: 21300000, guid: a96ce08b669e4da4a980777dece4da44, type: 3}
+  - {fileID: 21300000, guid: 406e89c482e2de3499e25a3020d1e340, type: 3}
+  - {fileID: 21300000, guid: 1e4cc6bce0544134ea31454c82800a10, type: 3}
+  - {fileID: 21300000, guid: 1bda058d545bfaf4cb13b7619fc8991d, type: 3}
+  - {fileID: 21300000, guid: acd0d6ea6678e9246b3bb186d165c461, type: 3}
+  - {fileID: 21300000, guid: fee071f92731965419cc0887b304fb62, type: 3}
+  - {fileID: 21300000, guid: 5b7e6a8e07235dd4d9869f37745e73dd, type: 3}
+  - {fileID: 21300000, guid: 9e8f58e968bb5d74e84129dd94161fb5, type: 3}
 --- !u!4 &615101521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1910493014125708819, guid: 4b4bad8b36de36c4ca812c7a3db80a40,
@@ -1917,6 +1950,7 @@ MonoBehaviour:
   spawnImmediate: 0
   immediateSpawnPos: {x: 0, y: 0, z: 0}
   targetAspectRatio: {x: 10, y: 16}
+  isPipe: 1
 --- !u!1 &1113518757
 GameObject:
   m_ObjectHideFlags: 0
@@ -2578,6 +2612,7 @@ MonoBehaviour:
   spawnImmediate: 1
   immediateSpawnPos: {x: 0, y: 0, z: 0}
   targetAspectRatio: {x: 10, y: 16}
+  isPipe: 0
 --- !u!1 &1395606680
 GameObject:
   m_ObjectHideFlags: 0
@@ -2759,6 +2794,7 @@ MonoBehaviour:
   spawnImmediate: 1
   immediateSpawnPos: {x: 0, y: 0, z: 0}
   targetAspectRatio: {x: 10, y: 16}
+  isPipe: 0
 --- !u!1 &1421010462
 GameObject:
   m_ObjectHideFlags: 0

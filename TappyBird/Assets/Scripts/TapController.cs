@@ -79,7 +79,7 @@ public class TapController : MonoBehaviour
             OnPlayerScored();
             EatFood();
             chineseController.GetRandomAudioSource().Play();
-            //scoreAudio.Play();
+            other.transform.parent.GetComponent<Pipe>().ClearSprite();
         }
 
         if (other.gameObject.tag == "DeadZone"){

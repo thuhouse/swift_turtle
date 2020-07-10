@@ -18,8 +18,6 @@ public class Parallaxer : MonoBehaviour
         public float min;
         public float max;
     }
-    [SerializeField]
-    FoodRandomizer foodRandomizer;
     public GameObject Prefab;
     public int poolSize;
     public float shiftSpeed;
@@ -34,6 +32,10 @@ public class Parallaxer : MonoBehaviour
     float targetAspect;
     PoolObject[] poolObjects;
     GameManager game;
+
+    public bool isPipe = false;
+    public delegate void GameDelegate(Pipe pipe);
+    public static event GameDelegate OnPipePlace;
 
     private void Awake() {
         Configure();
@@ -60,9 +62,6 @@ public class Parallaxer : MonoBehaviour
             spawnTimer = 0;
             Spawn();
         }
-        /*for (int i = 1; i > 0; i++) {
-            GameObject gameObject1 = foodRandomizer.FoodRandom();
-        }*/
     }
 
     private void OnGameOverConfirmed()
@@ -100,6 +99,7 @@ public class Parallaxer : MonoBehaviour
         pos.x = (defaultSpawnPos.x * Camera.main.aspect) / targetAspect;
         pos.y = UnityEngine.Random.Range(ySpawnRange.min, ySpawnRange.max);
         t.position = pos;
+        if (isPipe) OnPipePlace(t.gameObject.GetComponent<Pipe>());
     }
 
     void SpawnImmediate() {

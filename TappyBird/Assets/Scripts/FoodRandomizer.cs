@@ -5,25 +5,22 @@ using UnityEngine;
 public class FoodRandomizer : MonoBehaviour
 {
     [SerializeField]
-    public GameObject[] foods;
+    Sprite[] _sprites;
 
-
-
-        public GameObject FoodRandom() {
-        int index = Random.Range(0, foods.Length - 1);
-        //System.Random randoGenerate = new System.Random();
-        //int index = randoGenerate.Next(0, 19);
-        Debug.Log(index);
-         return foods[index];
+    public Sprite FoodRandom() {
+        int index = Random.Range(0, _sprites.Length - 1);
+        return _sprites[index];
     }
-    
+
+    private void PickFood(Pipe pipe){
+        pipe.SetSprite(FoodRandom());
+    }
 
     private void OnEnable() {
-        Debug.Log("hello");
-        FoodRandom().SetActive(true);
+        Parallaxer.OnPipePlace += PickFood;
     }
 
-    //private void Update() {
-        //FoodRandom();
-    //}
+    private void OnDisable() {
+        Parallaxer.OnPipePlace -= PickFood;
+    }
 }
