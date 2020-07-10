@@ -60,7 +60,9 @@ public class Parallaxer : MonoBehaviour
             spawnTimer = 0;
             Spawn();
         }
-        foodRandomizer.FoodRandom(); 
+        /*for (int i = 1; i > 0; i++) {
+            GameObject gameObject1 = foodRandomizer.FoodRandom();
+        }*/
     }
 
     private void OnGameOverConfirmed()
