@@ -1155,6 +1155,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1258,6 +1259,22 @@ MonoBehaviour:
   _width: 1024
   _height: 500
   _useScreen: 0
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dba876d66b0432b499cfc2077cb3dc66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 519420030}
+  poo: {fileID: 2444103284164935599, guid: 741139ca8dc1b1a489f81b52def5e657, type: 3}
+  goldPoo: {fileID: 3393671849546888801, guid: 3267ab9f41cf3254bb2411b9a5799cb4, type: 3}
+  bird: {fileID: 1113518757}
 --- !u!4 &615101521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1910493014125708819, guid: 4b4bad8b36de36c4ca812c7a3db80a40,
@@ -1685,7 +1702,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 3.25
+  m_Mass: 1.25
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -1707,9 +1724,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.8, y: 0}
+  m_Offset: {x: 0.8, y: 0.03}
   serializedVersion: 2
-  m_Radius: 4
+  m_Radius: 3.42
 --- !u!114 &1113518762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1728,6 +1745,10 @@ MonoBehaviour:
   tapAudio: {fileID: 1774836290}
   scoreAudio: {fileID: 504792119}
   dieAudio: {fileID: 81297862}
+  birds:
+  - {fileID: 21300000, guid: 0603e502eb46a324abef55beb49f2c18, type: 3}
+  - {fileID: 21300000, guid: 0bbab7b889d7c6b459b77d9ddf358ffd, type: 3}
+  - {fileID: 21300000, guid: 77919a140ad980b4b965685145e267c7, type: 3}
 --- !u!1 &1144478130
 GameObject:
   m_ObjectHideFlags: 0
