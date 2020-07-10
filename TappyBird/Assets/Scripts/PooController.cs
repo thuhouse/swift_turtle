@@ -24,16 +24,6 @@ public class PooController : MonoBehaviour
         TapController.OnPlayerDied += OnPlayerDied;
     }
 
-    private void Update() {
-        if (disabled) return;
-        if (Input.GetMouseButtonDown(1)){
-            if (gameManager.StoredScore < 8)
-                Poo();
-            else
-                GoldPoo();
-        }    
-    }
-
     void Poo(){
         GameObject myPoo = GameObject.Instantiate(poo);
         myPoo.transform.position = bird.transform.position;
@@ -52,5 +42,13 @@ public class PooController : MonoBehaviour
 
     void OnPlayerDied(){
         disabled = true;
+    }
+
+    public void Pooing(){
+        if (disabled) return;
+        if (gameManager.StoredScore < 8)
+            Poo();
+        else
+            GoldPoo();
     }
 }

@@ -24,6 +24,8 @@ public class TapController : MonoBehaviour
     SpriteRenderer _spriteRenderer;
     [SerializeField]
     Sprite[] birds;
+    [SerializeField]
+    ChineseController chineseController;
 
     private void Start() {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -76,7 +78,8 @@ public class TapController : MonoBehaviour
             //register score
             OnPlayerScored();
             EatFood();
-            scoreAudio.Play();
+            chineseController.GetRandomAudioSource().Play();
+            //scoreAudio.Play();
         }
 
         if (other.gameObject.tag == "DeadZone"){

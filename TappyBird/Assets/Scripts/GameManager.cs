@@ -17,6 +17,12 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverPage;
     public GameObject countdownPage;
     public TextMeshProUGUI scoreText;
+    [SerializeField]
+    private AudioSource backgroundAudio;
+    [SerializeField]
+    private AudioSource goldenAudio;
+
+    public AudioSource currentAudio;
 
     enum PageState {
         None,
@@ -44,6 +50,8 @@ public class GameManager : MonoBehaviour
         TapController.OnPlayerScored += OnPlayerScored;
         TapController.OnReset += OnReset;
         PooController.OnPoo += OnPoo;
+        currentAudio = backgroundAudio;
+        currentAudio.Play();
     }
 
     private void OnDisable() {
@@ -65,6 +73,23 @@ public class GameManager : MonoBehaviour
     }
 
     private void OnPoo(){
+
+        if (storedScore < 8){
+            if (currentAudio != backgroundAudio){
+                currentAudio.Stop();
+                currentAudio = backgroundAudio;
+                currentAudio.Play();
+            }
+            
+        } else {
+            if (currentAudio != goldenAudio){
+                currentAudio.Stop();
+                currentAudio = goldenAudio;
+                currentAudio.Play();
+            }
+        }
+
+
         score += CalculateScore(storedScore);
         scoreText.text = score.ToString();
         storedScore = 0;
@@ -110,6 +135,9 @@ public class GameManager : MonoBehaviour
             startPage.SetActive(true);
             gameOverPage.SetActive(false);
             countdownPage.SetActive(false);
+            currentAudio.Stop();
+            currentAudio = backgroundAudio;
+            currentAudio.Play();
             break;
 
             case PageState.GameOver:
