@@ -1,16 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class FoodRandomizer : MonoBehaviour
 {
     [SerializeField]
-    public static Sprite[] foods;
+    public GameObject[] foods;
 
 
-    static Sprite FoodRandom() {
-        System.Random randoGenerate = new System.Random();
-         return foods[randoGenerate.Next(0, 20)];
+        public GameObject FoodRandom() {
+        int index = Random.Range(0, foods.Length - 1);
+        //System.Random randoGenerate = new System.Random();
+        //int index = randoGenerate.Next(0, 19);
+         return foods[index];
+    }
+
+    private void OnEnable() {
+        Debug.Log("hello");
+        FoodRandom().SetActive(true);
+    }
+
+    private void Update() {
+        FoodRandom();
     }
 }

@@ -18,7 +18,8 @@ public class Parallaxer : MonoBehaviour
         public float min;
         public float max;
     }
-
+    [SerializeField]
+    FoodRandomizer foodRandomizer;
     public GameObject Prefab;
     public int poolSize;
     public float shiftSpeed;
@@ -59,6 +60,7 @@ public class Parallaxer : MonoBehaviour
             spawnTimer = 0;
             Spawn();
         }
+        foodRandomizer.FoodRandom(); 
     }
 
     private void OnGameOverConfirmed()

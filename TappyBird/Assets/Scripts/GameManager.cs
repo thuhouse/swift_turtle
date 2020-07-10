@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private AudioSource goldenAudio;
 
+    [SerializeField]
+    FoodRandomizer foodRandomizer;
+    [SerializeField]
+
     public AudioSource currentAudio;
 
     enum PageState {
