@@ -70,6 +70,10 @@ public class TapController : MonoBehaviour
             tapAudio.Play();
         }
 
+        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+        pos.x = Mathf.Clamp01(pos.x);
+        transform.position = Camera.main.ViewportToWorldPoint(pos);
+
         transform.rotation = Quaternion.Lerp(transform.rotation, _downRotation, tiltSmooth * Time.deltaTime);
     }
 
