@@ -17,6 +17,9 @@ public class PooController : MonoBehaviour
     [SerializeField]
     GameObject bird;
 
+    [SerializeField]
+    ChineseController pooSounds;
+
     private bool disabled = true;
 
     private void Start() {
@@ -27,12 +30,14 @@ public class PooController : MonoBehaviour
     void Poo(){
         GameObject myPoo = GameObject.Instantiate(poo);
         myPoo.transform.position = bird.transform.position;
+        pooSounds.GetRandomAudioSource().Play();
         OnPoo();
     }
 
     void GoldPoo(){
         GameObject myPoo = GameObject.Instantiate(goldPoo);
         myPoo.transform.position = bird.transform.position;
+        pooSounds.GetRandomAudioSource().Play();
         OnPoo();
     }
 

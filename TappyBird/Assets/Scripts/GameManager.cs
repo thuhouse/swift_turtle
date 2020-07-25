@@ -74,6 +74,8 @@ public class GameManager : MonoBehaviour
         storedScore++;        
         if (storedScore == 3) OnEatMedium();
         if (storedScore == 8) OnEatHeavy();
+        score += 1;
+        scoreText.text = score.ToString();
     }
 
     private void OnPoo(){
